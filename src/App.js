@@ -59,13 +59,10 @@ function App() {
       const sixtyDaysBeforeDate = formatter(
         new Date(new Date().getTime() - 24 * 60 * 60 * 1000 * 60)
       );
-      console.log("currentDate : ", currentDate);
-      console.log("sixtyDaysBeforeDate : ", sixtyDaysBeforeDate);
       const API_END_POINT = `${END_POINT_API}?currency=${selectedOption?.value?.code}&start=${sixtyDaysBeforeDate}&end=${currentDate}`;
       axios
         .get(API_END_POINT)
         .then((res) => {
-          console.log("res : ", res);
           const labels = [];
           const arr = Object.entries(res.data.bpi).map(([key, value], i) => {
             const date = new Date(key);
@@ -142,7 +139,6 @@ function App() {
         .catch(console.error);
     }
   }, [selectedOption]);
-  console.log("data : ", data);
   return (
     <div className="App">
       <div style={{ flex: 1, width: "100%", padding: 20 }}>
